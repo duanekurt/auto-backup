@@ -1,0 +1,35 @@
+{
+    "name": "savants/auto-backup",
+    "description": "Auto Database Backup",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "duanekurt",
+            "email": "kurtduane5@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Savants\\AutoBackup\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Savants\\AutoBackup\\DatabaseBackupProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "...",
+            "php artisan vendor:publish --provider=Savants\\AutoBackup\\DatabaseBackupProvider"
+        ],
+        "post-update-cmd": [
+            "...",
+            "php artisan vendor:publish --provider=Savants\\AutoBackup\\DatabaseBackupProvider"
+        ]
+    }
+}
