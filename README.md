@@ -11,6 +11,14 @@ Automatic Database Backup
 - To install the package
 
 > composer require savants/auto-backup
+> 
+- After that add this to your `app/Command/Kernel.php`
+```php
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->command('db:backup')->daily()->at('23:40'); // set your type of backup time and date
+    }
+```
 
 - Add this to your env
 
