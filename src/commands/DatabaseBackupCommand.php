@@ -26,7 +26,7 @@ class DatabaseBackupCommand extends Command
         if (!$disk->exists(storage_path().'/app/backup')) {
             $disk->makeDirectory('backup');
         }
-        $command = "" . config('autobak.dump_path') . " --user=" . env('DB_USERNAME') . " --password=" . env('DB_PASSWORD') . " --host=" . env('DB_HOST') . " " . env('DB_DATABASE') . "  > " . storage_path() . "/app/backup/" . $filename;
+        $command = "" . env('DUMP_PATH') . " --user=" . env('DB_USERNAME') . " --password=" . env('DB_PASSWORD') . " --host=" . env('DB_HOST') . " " . env('DB_DATABASE') . "  > " . storage_path() . "/app/backup/" . $filename;
         $returnVar = NULL;
         $output = NULL;
         
@@ -41,6 +41,6 @@ class DatabaseBackupCommand extends Command
                 ]
             ],
         ];
-        Http::post(config('autobak.discord_webhook_url'), $config);
+        Http::post(env('DISCORD_WEBHOOK_URL'), $config);
     }
 }
